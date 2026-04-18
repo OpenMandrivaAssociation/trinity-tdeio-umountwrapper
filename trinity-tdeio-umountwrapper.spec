@@ -1,11 +1,9 @@
 %bcond clang 1
 
 # TDE variables
-%define tde_epoch 2
 %if "%{?tde_version}" == ""
 %define tde_version 14.1.5
 %endif
-%define pkg_rel 2
 
 %define tde_pkg tdeio-umountwrapper
 %define tde_prefix /opt/trinity
@@ -21,9 +19,8 @@
 %define tarball_name %{tde_pkg}-trinity
 
 Name:		trinity-%{tde_pkg}
-Epoch:		%{tde_epoch}
 Version:	0.2
-Release:	%{?tde_version}_%{?!preversion:%{pkg_rel}}%{?preversion:0_%{preversion}}%{?dist}
+Release:	%{?tde_version:%{tde_version}_}3
 Summary:	Progress dialog for safely removing devices in Trinity
 Group:		Applications/Utilities
 URL:		http://frode.kde.no/misc/tdeio_umountwrapper/
@@ -31,7 +28,7 @@ URL:		http://frode.kde.no/misc/tdeio_umountwrapper/
 License:	GPLv2+
 
 
-Source0:		https://mirror.ppa.trinitydesktop.org/trinity/releases/R%{tde_version}/main/applications/tdeio/%{tarball_name}-%{tde_version}%{?preversion:~%{preversion}}.tar.xz
+Source0:		https://mirror.ppa.trinitydesktop.org/trinity/releases/R%{tde_version}/main/applications/tdeio/%{tarball_name}-%{tde_version}.tar.xz
 Source1:		media_safelyremove.desktop_tdeio
 
 BuildSystem:    cmake
